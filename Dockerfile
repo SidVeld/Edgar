@@ -1,12 +1,10 @@
-FROM ghcr.io/astral-sh/uv:alpine
+FROM ghcr.io/astral-sh/uv:python3.12-alpine
 
 WORKDIR /bot
 
 COPY . .
 
-RUN apk add gcc python3-dev musl-dev linux-headers
-
-RUN uv sync --frozen
+RUN uv sync --frozen --no-dev
 
 CMD ["uv", "run", "-m", "bot"]
 
