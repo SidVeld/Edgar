@@ -1,6 +1,5 @@
 import random
 from pathlib import Path
-
 from tomllib import load
 
 PYPROJECT_PATH = Path("pyproject.toml")
@@ -8,7 +7,7 @@ PYPROJECT_PATH = Path("pyproject.toml")
 
 def get_version() -> str:
     pyproject_data = load(PYPROJECT_PATH.open("rb"))
-    return pyproject_data["tool"]["poetry"]["version"]
+    return pyproject_data["project"]["version"]
 
 
 def get_quote() -> str:
