@@ -1,12 +1,12 @@
-FROM ghcr.io/owl-corp/python-poetry-base:3.11-slim
+FROM ghcr.io/astral-sh/uv:alpine
 
 WORKDIR /bot
 
-COPY poetry.lock pyproject.toml ./
-
-RUN poetry install --without dev
-
 COPY . .
 
-CMD ["poetry", "run", "python", "-m", "bot"]
+RUN apk add gcc python3-dev musl-dev linux-headers
+
+RUN uv sync --frozen
+
+CMD ["uv", "run", "-m", "bot"]
 
